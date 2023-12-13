@@ -52,6 +52,9 @@ int main() {
     int error = get_message(sockfd, recvline);
 
     if (handle_error(error)) return 0;
+
+    clear();
+
     if (strcmp(recvline, "Rejected") == 0) {
         fbtype("伺服器已滿，請稍後再試\n", WHITE, RED);
         clear();
