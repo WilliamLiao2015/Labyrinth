@@ -35,7 +35,7 @@ int main() {
         return 0;
     } else if (strcmp(recvline, "Accepted") == 0) {
         fbtype("冒險者您好，歡迎來到 Labyrinth\n\n", WHITE, GREEN);
-        ntype("請問您的名字是？\n");
+        type("請問您的名字是？\n");
         // clear();
         Shutdown(sockfd, SHUT_WR);
         return 0;

@@ -10,7 +10,7 @@ int reading_delay = 300;
 
 
 // Typing function without color
-void ntype(const char *string) {
+void type(const char *string) {
     printf("\033[0m");
     for (int i = 0; i < strlen(string); i++) {
         printf("%c", string[i]);
@@ -33,7 +33,7 @@ void ftype(const char *string, int fg) {
     printf("\n\033[0m");
 }
 
-// Typing function with only foreground color
+// Typing function with only background color
 void btype(const char *string, int bg) {
     printf("\033[4%dm", bg);
     for (int i = 0; i < strlen(string); i++) {
@@ -45,7 +45,7 @@ void btype(const char *string, int bg) {
     printf("\n\033[0m");
 }
 
-// Typing function with color
+// Typing function with colors
 void fbtype(const char *string, int fg, int bg) {
     printf("\033[3%d;4%dm", fg, bg);
     for (int i = 0; i < strlen(string); i++) {

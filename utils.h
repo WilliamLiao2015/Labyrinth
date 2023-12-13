@@ -19,7 +19,7 @@ extern const int get_message(int sockfd, char *message);
 
 
 // Styling functions
-extern const void ntype(const char *string);
+extern const void type(const char *string);
 extern const void ftype(const char *string, int fg);
 extern const void btype(const char *string, int bg);
 extern const void fbtype(const char *string, int fg, int bg);
