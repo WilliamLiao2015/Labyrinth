@@ -1,10 +1,12 @@
 *
 
+!stages
+!utils
+
 !Makefile
 !.gitignore
 !*.md
 !*.c
 !*.h
-!stages
 
 unp.h
