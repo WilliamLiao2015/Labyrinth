@@ -18,8 +18,10 @@ void display(char *message) {
     char *line = strtok(message, "\n");
     while (line != NULL) {
         if (strcmp(line, "<clear>") == 0) clear();
-        else type(line);
-        type("\n");
+        else {
+            type(line);
+            type("\n\n");
+        }
         line = strtok(NULL, "\n");
     }
 }
