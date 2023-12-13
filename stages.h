@@ -3,4 +3,4 @@
 #endif
 
 
-extern char *Prologue();
+extern const int Prologue();

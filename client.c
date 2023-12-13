@@ -1,8 +1,6 @@
 #include "unp.h"
 #include "utils.h"
 
-#define DEBUG 0
-
 
 int handle_error(int error) {
     if (error) {
@@ -16,9 +14,14 @@ int handle_error(int error) {
 
 void display(char *message) {
     char *line = strtok(message, "\n");
+    int is_options = 0;
     while (line != NULL) {
         if (strcmp(line, "<clear>") == 0) clear();
-        else {
+        else if (strcmp(line, "<options>") == 0) is_options = 1;
+        else if (is_options) {
+            ftype(line, BLUE);
+            type("\n");
+        } else {
             type(line);
             type("\n\n");
         }
@@ -33,6 +36,9 @@ void game_loop(int sockfd) {
         int error = get_message(sockfd, recvline);
         if (handle_error(error)) return;
         display(recvline);
+        char choice[1];
+        int n = scanf("%s", choice);
+        Writen(sockfd, choice, n);
     }
 }
 

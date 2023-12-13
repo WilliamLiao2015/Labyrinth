@@ -1,17 +1,16 @@
 #include <pthread.h>
 #include "unp.h"
+#include "types.h"
 #include "utils.h"
 #include "stages.h"
 
-#define DEBUG 1
-
-
-// Settings
-const int MAX_PLAYER = 2;
+#define MAX_PLAYER 2
 
 
 // Global variables
 int num_players = 0;
+
+struct Player players[MAX_PLAYER];
 
 
 // Reject connection
@@ -26,17 +25,38 @@ void *reject_connection(void *arg) {
 
 // Accept connection
 void *accept_connection(void *arg) {
-    int connfd = *(int *)arg;
+    int connfd = ((struct ThreadArg *)arg)->connfd;
+    int index = ((struct ThreadArg *)arg)->index;
     char *flag = "Accepted", recvline[MAXLINE];
+
     Writen(connfd, flag, strlen(flag));
+
     int error = get_message(connfd, recvline);
     if (error) {
         Close(connfd);
         pthread_exit(NULL);
     }
     if (DEBUG) printf("Player name: %s\n", recvline);
-    char *message = Prologue();
-    Writen(connfd, message, strlen(message));
+
+    strcpy(players[index].name, recvline);
+    players[index].money = 1000;
+    memset(players[index].inventory, 0, sizeof(players[index].inventory));
+
+    StageFunction *next = &Prologue;
+    struct StageOption *option = (struct StageOption *)malloc(sizeof(struct StageOption));
+    option->connfd = connfd;
+
+    while (1) {
+        error = (*next)(option);
+        if (error) {
+            Close(connfd);
+            pthread_exit(NULL);
+        }
+        next = option->next;
+    }
+
+    free(option);
+
     Close(connfd);
     return NULL;
 }
@@ -45,9 +65,7 @@ void *accept_connection(void *arg) {
 int main() {
     int listenfd;
     struct sockaddr_in servaddr;
-
-    pthread_t thread_ids[MAX_PLAYER];
-    memset(thread_ids, 0, sizeof(thread_ids));
+    pthread_t thread_ids[MAX_PLAYER] = {0};
 
     listenfd = Socket(AF_INET, SOCK_STREAM, 0);
 
@@ -68,7 +86,10 @@ int main() {
 
         for (int i = 0; i < MAX_PLAYER; i++) {
             if (thread_ids[i] == 0) {
-                pthread_create(&thread_ids[i], NULL, accept_connection, (void *)&connfd);
+                struct ThreadArg *thread_args = (struct ThreadArg *)malloc(sizeof(struct ThreadArg));
+                thread_args->connfd = connfd;
+                thread_args->index = i;
+                pthread_create(&thread_ids[i], NULL, accept_connection, (void *)thread_args);
                 if (DEBUG) printf("Connection #%d established: %d\n", i, connfd);
                 num_players++;
                 break;
