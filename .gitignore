@@ -1,5 +1,6 @@
 *
-!.gitignore
 !Makefile
-!*.c
+!.gitignore
 !*.md
+!*.db
+!*.c
