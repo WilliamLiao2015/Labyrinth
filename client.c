@@ -1,8 +1,38 @@
 #include "unp.h"
-#include "stages.h"
 #include "utils.h"
 
 #define DEBUG 0
+
+
+int handle_error(int error) {
+    if (error) {
+        fbtype("伺服器沒有連線，請稍後再試\n", WHITE, RED);
+        clear();
+        return 1;
+    }
+    return 0;
+}
+
+
+void display(char *message) {
+    char *line = strtok(message, "\n");
+    while (line != NULL) {
+        if (strcmp(line, "<clear>") == 0) clear();
+        else type(line);
+        type("\n");
+        line = strtok(NULL, "\n");
+    }
+}
+
+
+void game_loop(int sockfd) {
+    while (1) {
+        char recvline[MAXLINE];
+        int error = get_message(sockfd, recvline);
+        if (handle_error(error)) return;
+        display(recvline);
+    }
+}
 
 
 int main() {
@@ -18,25 +48,24 @@ int main() {
 
 	Connect(sockfd, (SA *) &servaddr, sizeof(servaddr));
 
-    char recvline[MAXLINE + 1];
+    char recvline[MAXLINE];
     int error = get_message(sockfd, recvline);
 
-    if (error) {
-        fbtype("伺服器沒有連線，請稍後再試\n", WHITE, RED);
-        clear();
-        return 0;
-    }
-
-    clear();
+    if (handle_error(error)) return 0;
     if (strcmp(recvline, "Rejected") == 0) {
         fbtype("伺服器已滿，請稍後再試\n", WHITE, RED);
-        // clear();
+        clear();
         Shutdown(sockfd, SHUT_WR);
         return 0;
     } else if (strcmp(recvline, "Accepted") == 0) {
         fbtype("冒險者您好，歡迎來到 Labyrinth\n\n", WHITE, GREEN);
-        type("請問您的名字是？\n");
-        // clear();
+        type("請問您的名字是？");
+        int n = scanf("%s", recvline);
+        clear();
+        if (n != EOF) {
+            Writen(sockfd, recvline, strlen(recvline));
+            game_loop(sockfd);
+        }
         Shutdown(sockfd, SHUT_WR);
         return 0;
     }

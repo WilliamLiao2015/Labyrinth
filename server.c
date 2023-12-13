@@ -1,11 +1,17 @@
 #include <pthread.h>
 #include "unp.h"
+#include "utils.h"
+#include "stages.h"
 
 #define DEBUG 1
 
 
 // Settings
 const int MAX_PLAYER = 2;
+
+
+// Global variables
+int num_players = 0;
 
 
 // Reject connection
@@ -21,15 +27,23 @@ void *reject_connection(void *arg) {
 // Accept connection
 void *accept_connection(void *arg) {
     int connfd = *(int *)arg;
-    char *flag = "Accepted";
+    char *flag = "Accepted", recvline[MAXLINE];
     Writen(connfd, flag, strlen(flag));
+    int error = get_message(connfd, recvline);
+    if (error) {
+        Close(connfd);
+        pthread_exit(NULL);
+    }
+    if (DEBUG) printf("Player name: %s\n", recvline);
+    char *message = Prologue();
+    Writen(connfd, message, strlen(message));
     Close(connfd);
     return NULL;
 }
 
 
 int main() {
-    int listenfd, num_players = 0;
+    int listenfd;
     struct sockaddr_in servaddr;
 
     pthread_t thread_ids[MAX_PLAYER];
@@ -69,9 +83,8 @@ int main() {
         for (int i = 0; i < MAX_PLAYER; i++) {
             if (thread_ids[i] != 0) {
                 pthread_join(thread_ids[i], NULL);
-                if (DEBUG) {
-                    printf("Connection #%d closed: %d\n", i, connfd);
-                }
+                if (DEBUG) printf("Connection #%d closed: %d\n", i, connfd);
+                num_players--;
                 thread_ids[i] = 0;
             }
         }

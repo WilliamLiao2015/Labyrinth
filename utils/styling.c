@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <string.h>
-
 #include "../utils.h"
 
 
@@ -18,7 +17,6 @@ void type(const char *string) {
         msleep(typing_delay);
     }
     msleep(reading_delay);
-    printf("\n");
 }
 
 // Typing function with only foreground color
@@ -30,7 +28,7 @@ void ftype(const char *string, int fg) {
         msleep(typing_delay);
     }
     msleep(reading_delay);
-    printf("\n\033[0m");
+    printf("\033[0m");
 }
 
 // Typing function with only background color
@@ -42,7 +40,7 @@ void btype(const char *string, int bg) {
         msleep(typing_delay);
     }
     msleep(reading_delay);
-    printf("\n\033[0m");
+    printf("\033[0m");
 }
 
 // Typing function with colors
@@ -54,7 +52,7 @@ void fbtype(const char *string, int fg, int bg) {
         msleep(typing_delay);
     }
     msleep(reading_delay);
-    printf("\n\033[0m");
+    printf("\033[0m");
 }
 
 
