@@ -21,8 +21,32 @@ void ntype(const char *string) {
     printf("\n");
 }
 
+// Typing function with only foreground color
+void ftype(const char *string, int fg) {
+    printf("\033[3%dm", fg);
+    for (int i = 0; i < strlen(string); i++) {
+        printf("%c", string[i]);
+        fflush(stdout);
+        msleep(typing_delay);
+    }
+    msleep(reading_delay);
+    printf("\n\033[0m");
+}
+
+// Typing function with only foreground color
+void btype(const char *string, int bg) {
+    printf("\033[4%dm", bg);
+    for (int i = 0; i < strlen(string); i++) {
+        printf("%c", string[i]);
+        fflush(stdout);
+        msleep(typing_delay);
+    }
+    msleep(reading_delay);
+    printf("\n\033[0m");
+}
+
 // Typing function with color
-void type(const char *string, int fg, int bg) {
+void fbtype(const char *string, int fg, int bg) {
     printf("\033[3%d;4%dm", fg, bg);
     for (int i = 0; i < strlen(string); i++) {
         printf("%c", string[i]);

@@ -6,3 +6,4 @@ int BLUE = 4;
 int MAGENTA = 5;
 int CYAN = 6;
 int WHITE = 7;
+int DEFAULT = 9;
