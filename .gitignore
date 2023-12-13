@@ -2,5 +2,6 @@
 !Makefile
 !.gitignore
 !*.md
-!*.db
 !*.c
+!*.h
+!stages

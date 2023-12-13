@@ -1,17 +1,16 @@
 include ../Make.defines
 
+
 PROGS =	server client
 
+STAGES = $(wildcard ./stages/*.c)
 
-all: ${PROGS}
+
+all: ${PROGS} ${STAGES}
 
 
 server: server.o
-	${CC} ${CFLAGS} -o $@ server.o ${LIBS} -lsqlite3 -std=c99
+	${CC} ${CFLAGS} -o $@ server.o ${STAGES} ${LIBS}
 
 client: client.o
 	${CC} ${CFLAGS} -o $@ client.o ${LIBS}
-
-
-clean:
-	rm -f ${PROGS} ${CLEANFILES}
