@@ -100,14 +100,14 @@ int main() {
                 if (DEBUG) printf("Connection #%d closed: %d\n", i, connfd);
             }
         }
+    }
 
-        for (int i = 0; i < MAX_PLAYER; i++) {
-            if (thread_ids[i] != 0) {
-                pthread_join(thread_ids[i], NULL);
-                if (DEBUG) printf("Connection #%d closed: %d\n", i, connfd);
-                num_players--;
-                thread_ids[i] = 0;
-            }
+    for (int i = 0; i < MAX_PLAYER; i++) {
+        if (thread_ids[i] != 0) {
+            pthread_join(thread_ids[i], NULL);
+            if (DEBUG) printf("Connection #%d closed\n", i);
+            num_players--;
+            thread_ids[i] = 0;
         }
     }
 
