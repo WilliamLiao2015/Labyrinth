@@ -12,7 +12,7 @@ int handle_error(int error) {
 }
 
 
-void display(char *message) {
+int display(char *message) {
     char *line = strtok(message, "\n");
     int is_options = 0;
     while (line != NULL) {
@@ -27,6 +27,7 @@ void display(char *message) {
         }
         line = strtok(NULL, "\n");
     }
+    return is_options;
 }
 
 
@@ -35,11 +36,13 @@ void game_loop(int sockfd) {
         char recvline[MAXLINE];
         int error = get_message(sockfd, recvline);
         if (handle_error(error)) return;
-        display(recvline);
-        printf("\n> ");
-        char choice[1];
-        int n = scanf("%s", choice);
-        Writen(sockfd, choice, n);
+        int has_options = display(recvline);
+        if (has_options) {
+            printf("\n> ");
+            char choice[1];
+            int n = scanf("%s", choice);
+            Writen(sockfd, choice, n);
+        }
     }
 }
 

@@ -42,7 +42,7 @@ void *accept_connection(void *arg) {
     players[index].money = 1000;
     memset(players[index].inventory, 0, sizeof(players[index].inventory));
 
-    StageFunction *next = &Prologue;
+    StageFunction *next = &PrologueScene;
     struct StageOption *option = (struct StageOption *)malloc(sizeof(struct StageOption));
     option->connfd = connfd;
 

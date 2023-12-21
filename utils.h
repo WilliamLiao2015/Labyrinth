@@ -13,6 +13,7 @@ typedef int StageFunction(struct StageOption *option);
 struct StageOption {
     int connfd;
     StageFunction *next;
+    StageFunction *redirect_to;
 };
 
 

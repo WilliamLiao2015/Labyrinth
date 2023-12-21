@@ -3,4 +3,9 @@
 #endif
 
 
-extern const int Prologue();
+extern const int InvalidScene(struct StageOption *option);
+
+extern const int PrologueScene(struct StageOption *option);
+
+extern const int BreakChainScene(struct StageOption *option);
+extern const int StayInPlaceScene(struct StageOption *option);
