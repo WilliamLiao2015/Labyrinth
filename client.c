@@ -36,6 +36,7 @@ void game_loop(int sockfd) {
         int error = get_message(sockfd, recvline);
         if (handle_error(error)) return;
         display(recvline);
+        printf("\n> ");
         char choice[1];
         int n = scanf("%s", choice);
         Writen(sockfd, choice, n);
@@ -70,7 +71,8 @@ int main() {
         return 0;
     } else if (strcmp(recvline, "Accepted") == 0) {
         fbtype("冒險者您好，歡迎來到 Labyrinth\n\n", WHITE, GREEN);
-        type("請問您的名字是？");
+        type("請問您的名字是？\n\n");
+        printf("> ");
         int n = scanf("%s", recvline);
         clear();
         if (n != EOF) {
