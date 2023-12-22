@@ -9,3 +9,4 @@ extern const int PrologueScene(struct StageOption *option);
 
 extern const int BreakChainScene(struct StageOption *option);
 extern const int StayInPlaceScene(struct StageOption *option);
+extern const int EpilogueScene(struct StageOption *option);
