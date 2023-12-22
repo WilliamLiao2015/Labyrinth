@@ -24,6 +24,13 @@ int PrologueScene(struct StageOption *option) {
 
     int choice = atoi(recvline);
 
+    if (strcmp(recvline, "q") == 0)
+    {
+        option->next = &EpilogueScene;
+        return 0;
+    }
+    
+
     switch (choice) {
         case 1:
             option->next = &BreakChainScene;
