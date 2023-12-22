@@ -2,20 +2,6 @@
 #define UTILS_H
 #endif
 
-#define DEBUG 1
-
-
-// Function declarations
-struct StageOption;
-
-typedef int StageFunction(struct StageOption *option);
-
-struct StageOption {
-    int connfd;
-    StageFunction *next;
-    StageFunction *redirect_to;
-};
-
 
 // Color declarations
 extern const int BLACK;
