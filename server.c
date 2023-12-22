@@ -41,7 +41,6 @@ void *accept_connection(void *arg) {
     strcpy(players[index].name, recvline);
     players[index].money = 1000;
     memset(players[index].inventory, 0, sizeof(players[index].inventory));
-    printf("1");
     players[index].skills[0] = &(struct Skill) {
         .name = "拳擊",
         .atk = 5,
@@ -57,7 +56,6 @@ void *accept_connection(void *arg) {
         .atk = 20,
         .cd = 2,
     };
-    printf("2");
 
     StageFunction *next = &PrologueScene;
     struct StageOption *option = (struct StageOption *)malloc(sizeof(struct StageOption));
