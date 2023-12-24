@@ -4,16 +4,14 @@
 #include "../stages.h"
 
 
-int StayInPlaceScene(struct StageOption *option) {
+int FaustIntroductionScene(struct StageOption *option) {
     char recvline[MAXLINE], *message = (
         "<clear>\n"
-        "你決定留在原地，等待契機\n"
-        "突然間，一陣清亮的腳步聲自外頭傳來\n"
-        "你警惕地看著地牢的入口，只見一名身穿黑色正裝、臉上戴著單片眼鏡的男子步履從容地走了進來\n"
+        "「鄙人浮士德，現在是這座地下大迷宮的總管。」\n"
+        "男子躬身鞠躬，如是說道，「由於先前魔王死去，現在這座地下大迷宮已經失控。我需要有人幫助它回復正常。」\n"
         "<options>\n"
-        "1. 「麻煩幫個忙，放我出去。」\n"
-        "2. 「……你是誰？」\n"
-        "3. 「……」\n"
+        "1. 「那就放我出去，我幫你解決。」\n"
+        "2. 「……」\n"
     );
 
     Writen(option->connfd, message, strlen(message));
@@ -29,14 +27,11 @@ int StayInPlaceScene(struct StageOption *option) {
             option->next = &FaustRejectScene;
             break;
         case 2:
-            option->next = &FaustIntroductionScene;
-            break;
-        case 3:
-            option->next = &FaustIntroductionScene;
+            option->next = &FaustKillScene;
             break;
         default:
             option->next = &InvalidScene;
-            option->redirect_to = &StayInPlaceScene;
+            option->redirect_to = &FaustIntroductionScene;
             break;
     }
 

@@ -27,17 +27,17 @@ int BreakChainScene(struct StageOption *option) {
 
     switch (choice) {
         case 1:
-            option->next = &BreakChainScene;
+            option->next = &FaustRejectScene;
             break;
         case 2:
-            option->next = &BreakChainScene;
+            option->next = &FaustIntroductionScene;
             break;
         case 3:
-            option->next = &BreakChainScene;
+            option->next = &FaustIntroductionScene;
             break;
         default:
             option->next = &InvalidScene;
-            option->redirect_to = &PrologueScene;
+            option->redirect_to = &BreakChainScene;
             break;
     }
 

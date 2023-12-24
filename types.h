@@ -29,6 +29,11 @@ struct Skill {
 
 struct Player {
     char name[20];
+    int level;
+    int hp;
+    int atk;
+    int def;
+    int exp;
     int money;
     struct Slot *inventory[10];
     struct Skill *skills[10];
@@ -41,6 +46,7 @@ typedef int StageFunction(struct StageOption *option);
 
 struct Monster {
     char name[20];
+    int level;
     int hp;
     int atk;
     int def;

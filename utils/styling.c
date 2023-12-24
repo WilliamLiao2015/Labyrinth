@@ -5,8 +5,8 @@
 #include "../utils.h"
 
 
-int typing_delay = DEBUG ? 0 : 15;
-int reading_delay = DEBUG ? 0 : 300;
+int typing_delay = DEBUG ? 5 : 15;
+int reading_delay = DEBUG ? 5 : 300;
 
 
 // Typing function without color

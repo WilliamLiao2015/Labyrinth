@@ -39,6 +39,11 @@ void *accept_connection(void *arg) {
     if (DEBUG) printf("Player name: %s\n", recvline);
 
     strcpy(players[index].name, recvline);
+    players[index].level = 1;
+    players[index].hp = 100;
+    players[index].atk = 10;
+    players[index].def = 0;
+    players[index].exp = 0;
     players[index].money = 1000;
     memset(players[index].inventory, 0, sizeof(players[index].inventory));
     players[index].skills[0] = &(struct Skill) {
