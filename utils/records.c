@@ -3,7 +3,8 @@
 #include "../types.h"
 #include "../utils.h"
 #include "../stages.h"
-
+#include <stdio.h>
+#include <string.h>
 void save_records(struct StageOption *option, char* filename) {
     FILE *fp = fopen(filename, "w");
     if (fp == NULL) {
@@ -51,7 +52,7 @@ void read_records(struct StageOption *option, char* filename)
 {
     FILE *fp = fopen(filename, "r");
     if (fp == NULL) {
-        printf("初次見面，歡迎來到Labyrinth\n");
+        printf("冒險者您好，歡迎來到 Labyrinth\n");
         return;
     }
     fscanf(fp, "%s\n", option->player->name);
