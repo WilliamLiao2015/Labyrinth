@@ -2,10 +2,13 @@
 #include "../types.h"
 #include "../utils.h"
 #include "../stages.h"
+#include "../globals.h"
 
 
 int BattleScene(struct StageOption *option) {
-    char recvline[MAXLINE], message[MAXLINE];
+    int num_skills = sizeof(option->player->skills) / sizeof(struct Skill *);
+    char recvline[MAXLINE], message[MAXLINE], battle_log[MAXLINE];
+    struct Monster *monster = option->battle_info->monster;
 
     sprintf(
         message,
@@ -13,10 +16,10 @@ int BattleScene(struct StageOption *option) {
         "你遭遇了%s！\n"
         "你決定……\n"
         "<options>\n",
-        option->battle_info->monster->name
+        monster->name
     );
 
-    for (int i = 0; i < sizeof(option->player->skills) / sizeof(struct Skill *); i++) {
+    for (int i = 0; i < num_skills; i++) {
         if (option->player->skills[i] == NULL) continue;
         sprintf(
             message + strlen(message),
@@ -34,18 +37,31 @@ int BattleScene(struct StageOption *option) {
 
     int choice = atoi(recvline);
 
-    switch (choice) {
-        case 1:
-            option->next = &BattleScene;
-            break;
-        case 2:
-            option->next = &BattleScene;
-            break;
-        default:
-            option->next = &InvalidScene;
-            option->redirect_to = &BattleScene;
-            break;
+    if (choice < 1 || choice > num_skills) {
+        option->next = &InvalidScene;
+        option->redirect_to = &BattleScene;
+        return 0;
     }
+
+    struct Skill *skill = option->player->skills[choice - 1];
+
+    sprintf(battle_log, "你使用%s攻擊了%s\n！", skill->name, monster->name);
+    Writen(option->connfd, battle_log, strlen(battle_log));
+    monster->hp -= skill->atk - monster->def;
+    if (monster->hp <= 0) {
+        option->next = &VictoryScene;
+        return 0;
+    }
+
+    sprintf(battle_log, "%s攻擊了你！\n", monster->name);
+    Writen(option->connfd, battle_log, strlen(battle_log));
+    option->player->hp -= monster->atk - option->player->def;
+    if (option->player->hp <= 0) {
+        option->next = &DefeatedScene;
+        return 0;
+    }
+
+    option->next = &BattleScene;
 
     return 0;
 }

@@ -7,6 +7,9 @@
 int VictoryScene(struct StageOption *option) {
     char message[MAXLINE];
 
+    option->player->exp += option->battle_info->monster->exp;
+    option->player->money += option->battle_info->monster->reward;
+
     sprintf(
         message,
         "<clear>\n"

@@ -6,8 +6,9 @@
 #include "globals.h"
 
 
-// Global variables
+// Global variables initialization
 int num_players = 0;
+struct Player players[MAX_PLAYER] = {0};
 pthread_t thread_ids[MAX_PLAYER] = {0};
 
 

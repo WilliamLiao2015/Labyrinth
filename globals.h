@@ -7,7 +7,7 @@
 #define MAX_PLAYER 2
 
 
-int num_players;
+extern int num_players;
 
-struct Player players[MAX_PLAYER];
-pthread_t thread_ids[MAX_PLAYER];
+extern struct Player players[MAX_PLAYER];
+extern pthread_t thread_ids[MAX_PLAYER];
