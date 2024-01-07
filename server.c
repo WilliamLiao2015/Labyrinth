@@ -9,6 +9,7 @@
 
 // Global variables
 int num_players = 0;
+pthread_t thread_ids[MAX_PLAYER] = {0};
 
 struct Player players[MAX_PLAYER];
 
@@ -33,6 +34,8 @@ void *accept_connection(void *arg) {
 
     int error = get_message(connfd, recvline);
     if (error) {
+        thread_ids[index] = 0;
+        num_players--;
         Close(connfd);
         pthread_exit(NULL);
     }
@@ -71,6 +74,8 @@ void *accept_connection(void *arg) {
     while (1) {
         error = (*next)(option);
         if (error) {
+            thread_ids[index] = 0;
+            num_players--;
             Close(connfd);
             pthread_exit(NULL);
         }
@@ -87,7 +92,6 @@ void *accept_connection(void *arg) {
 int main(int argc, char **argv) {
     int listenfd;
     struct sockaddr_in servaddr;
-    pthread_t thread_ids[MAX_PLAYER] = {0};
 
 	if (argc != 2) err_quit("usage: server <IPaddress>");
 
