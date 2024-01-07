@@ -34,7 +34,6 @@ void *accept_connection(void *arg) {
 
     int error = get_message(connfd, recvline);
     if (error) {
-        save_records(); // TODO: save player records
         thread_ids[index] = 0;
         num_players--;
         Close(connfd);
