@@ -31,5 +31,5 @@ extern const void msleep(int period);
 
 
 // Recording functions
-extern const void save_records();
-extern const void load_records();
+extern const void save_records(struct StageOption *option, char* filename);
+extern const void read_records(struct StageOption *option, char* filename);

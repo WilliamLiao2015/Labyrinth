@@ -10,6 +10,11 @@ void save_records(struct StageOption *option, char* filename) {
         return;
     }
     fprintf(fp, "%s\n", option->player->name);
+    fprintf(fp, "%d\n", option->player->level);
+    fprintf(fp, "%d\n", option->player->hp);
+    fprintf(fp, "%d\n", option->player->atk);
+    fprintf(fp, "%d\n", option->player->def);
+    fprintf(fp, "%d\n", option->player->exp);
     fprintf(fp, "%d\n", option->player->money);
     int inventory_count = 0, skills_count = 0;
     for (int i = 0; i < 10; i++) {
@@ -49,8 +54,13 @@ void read_records(struct StageOption *option, char* filename)
         return;
     }
     fscanf(fp, "%s\n", option->player->name);
-    printf("歡迎回來，%s\n", option->player->name);
+    fscanf(fp, "%d\n", &option->player->level);
+    fscanf(fp, "%d\n", &option->player->hp);
+    fscanf(fp, "%d\n", &option->player->atk);
+    fscanf(fp, "%d\n", &option->player->def);
+    fscanf(fp, "%d\n", &option->player->exp);
     fscanf(fp, "%d\n", &option->player->money);
+    printf("歡迎回來，%s\n", option->player->name);
     int inventory_count = 0, skills_count = 0;
     fscanf(fp, "%d\n", &inventory_count);
     for (int i = 0; i < inventory_count; i++) {

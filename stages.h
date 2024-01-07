@@ -14,5 +14,6 @@ extern const int FaustRejectScene(struct StageOption *option);
 extern const int FaustKillScene(struct StageOption *option);
 
 extern const int BattleScene(struct StageOption *option);
+extern const int DefeatedScene(struct StageOption *option);
 
 extern const int EpilogueScene(struct StageOption *option);
