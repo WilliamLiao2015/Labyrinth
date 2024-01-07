@@ -13,12 +13,13 @@ int handle_error(int error) {
 }
 
 
-int display(char *message) {
+int display(char *message, int *is_paused) {
     char *line = strtok(message, "\n");
     int is_options = 0;
     while (line != NULL) {
         if (strcmp(line, "<clear>") == 0) clear();
         else if (strcmp(line, "<options>") == 0) is_options = 1;
+        else if (strcmp(line, "<pause>") == 0) *is_paused = 1;
         else if (is_options) {
             ftype(line, BLUE);
             type("\n");
@@ -35,14 +36,21 @@ int display(char *message) {
 void game_loop(int sockfd) {
     while (1) {
         char recvline[MAXLINE];
-        int error = get_message(sockfd, recvline);
+        int error = get_message(sockfd, recvline), is_paused = 0;
         if (handle_error(error)) return;
-        int has_options = display(recvline);
+        int has_options = display(recvline, &is_paused);
         if (has_options) {
             printf("\n> ");
-            char choice[1];
-            int n = scanf("%s", choice);
-            Writen(sockfd, choice, n);
+            int choice;
+            int n = scanf("%d%*c", &choice); // eat up the newline and prevent getchar not working
+            if (n == EOF) break;
+            char choice_string[MAXLINE];
+            sprintf(choice_string, "%d", choice);
+            Writen(sockfd, choice_string, strlen(choice_string));
+        }
+        if (is_paused) {
+            type("按下任意鍵以繼續……\n");
+            getchar();
         }
     }
 }

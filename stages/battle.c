@@ -6,7 +6,7 @@
 
 
 int BattleScene(struct StageOption *option) {
-    int num_skills = sizeof(option->player->skills) / sizeof(struct Skill *);
+    int num_skills = 0;
     char recvline[MAXLINE], message[MAXLINE], battle_log[MAXLINE];
     struct Monster *monster = option->battle_info->monster;
 
@@ -19,14 +19,15 @@ int BattleScene(struct StageOption *option) {
         monster->name
     );
 
-    for (int i = 0; i < num_skills; i++) {
-        if (option->player->skills[i] == NULL) continue;
+    for (int i = 0; i < sizeof(option->player->skills) / sizeof(struct Skill *); i++) {
+        if (option->player->skills[i] == NULL) break;
         sprintf(
             message + strlen(message),
             "%d. %s\n",
             i + 1,
             option->player->skills[i]->name
         );
+        num_skills++;
     }
 
     Writen(option->connfd, message, strlen(message));

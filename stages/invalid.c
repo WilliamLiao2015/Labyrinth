@@ -7,6 +7,7 @@ int InvalidScene(struct StageOption *option) {
     char *message = (
         "<clear>\n"
         "選擇無效，請重新選擇！\n"
+        "<pause>\n"
     );
 
     Writen(option->connfd, message, strlen(message));

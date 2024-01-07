@@ -14,14 +14,15 @@ int VictoryScene(struct StageOption *option) {
         message,
         "<clear>\n"
         "你擊敗了%s！\n"
-        "獲得 %d 經驗，獲得 %d 金幣\n"
-        "<options>\n",
+        "獲得 %d 經驗，獲得 %d 金幣\n",
         option->battle_info->monster->name,
         option->battle_info->monster->exp,
         option->battle_info->monster->reward
     );
     Writen(option->connfd, message, strlen(message));
     option->next = &VictoryScene; // TODO: Plot
+
+    msleep(1500);
 
     return 0;
 }
