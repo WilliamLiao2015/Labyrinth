@@ -3,8 +3,7 @@
 #include "../types.h"
 #include "../utils.h"
 #include "../stages.h"
-#include <stdio.h>
-#include <string.h>
+
 void save_records(struct StageOption *option, char* filename) {
     FILE *fp = fopen(filename, "w");
     if (fp == NULL) {
