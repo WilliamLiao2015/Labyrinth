@@ -16,4 +16,6 @@ int DefeatedScene(struct StageOption *option) {
     );
     Writen(option->connfd, message, strlen(message));
     option->next = &EpilogueScene;
+
+    return 0;
 }

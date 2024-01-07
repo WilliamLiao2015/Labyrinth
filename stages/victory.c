@@ -5,7 +5,7 @@
 
 
 int VictoryScene(struct StageOption *option) {
-    char recvline[MAXLINE], message[MAXLINE];
+    char message[MAXLINE];
 
     sprintf(
         message,
@@ -19,4 +19,6 @@ int VictoryScene(struct StageOption *option) {
     );
     Writen(option->connfd, message, strlen(message));
     option->next = &VictoryScene; // TODO: Plot
+
+    return 0;
 }
