@@ -111,6 +111,8 @@ void read_records(struct StageOption *option, char* filename) {
         option->next = &FaustRejectScene;
     } else if (strcmp(option->stage, "FaustKillScene") == 0) {
         option->next = &FaustKillScene;
+    } else if (strcmp(option->stage, "FaustPraiseScene") == 0) {
+        option->next = &FaustPraiseScene;
     } else if (strcmp(option->stage, "EpilogueScene") == 0) {
         option->next = &EpilogueScene;
     }

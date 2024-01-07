@@ -58,6 +58,7 @@ struct Monster {
 
 struct BattleInfo {
     struct Monster *monster;
+    StageFunction *next;
 };
 
 struct StageOption {

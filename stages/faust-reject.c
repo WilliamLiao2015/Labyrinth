@@ -33,6 +33,7 @@ int FaustRejectScene(struct StageOption *option) {
     option->battle_info->monster->def = 0;
     option->battle_info->monster->exp = 100;
     option->battle_info->monster->reward = 100;
+    option->battle_info->next = &FaustPraiseScene;
 
     switch (choice) {
         case 1:

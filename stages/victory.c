@@ -20,7 +20,7 @@ int VictoryScene(struct StageOption *option) {
         option->battle_info->monster->reward
     );
     Writen(option->connfd, message, strlen(message));
-    option->next = &VictoryScene; // TODO: Plot
+    option->next = option->battle_info->next;
 
     msleep(1500);
 

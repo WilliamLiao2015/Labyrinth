@@ -46,21 +46,23 @@ int BattleScene(struct StageOption *option) {
 
     struct Skill *skill = option->player->skills[choice - 1];
 
-    sprintf(battle_log, "你使用%s攻擊了%s\n！", skill->name, monster->name);
+    sprintf(battle_log, "<clear>\n你使用%s攻擊了%s！\n", skill->name, monster->name);
     Writen(option->connfd, battle_log, strlen(battle_log));
     monster->hp -= skill->atk - monster->def;
     if (monster->hp <= 0) {
         option->next = &VictoryScene;
         return 0;
     }
+    msleep(1000);
 
-    sprintf(battle_log, "%s攻擊了你！\n", monster->name);
+    sprintf(battle_log, "<clear>\n%s攻擊了你！\n", monster->name);
     Writen(option->connfd, battle_log, strlen(battle_log));
     option->player->hp -= monster->atk - option->player->def;
     if (option->player->hp <= 0) {
         option->next = &DefeatedScene;
         return 0;
     }
+    msleep(1000);
 
     option->next = &BattleScene;
 
