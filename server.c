@@ -52,16 +52,19 @@ void *accept_connection(void *arg) {
     memset(players[index].inventory, 0, sizeof(players[index].inventory));
     players[index].skills[0] = &(struct Skill) {
         .name = "拳擊",
+        .tag = "punch",
         .atk = 5,
         .cd = 0,
     };
     players[index].skills[1] = &(struct Skill) {
         .name = "劈砍",
+        .tag = "slash",
         .atk = 10,
         .cd = 1,
     };
     players[index].skills[2] = &(struct Skill) {
         .name = "火球術",
+        .tag = "fireball",
         .atk = 20,
         .cd = 2,
     };
@@ -72,10 +75,17 @@ void *accept_connection(void *arg) {
     option->connfd = connfd;
     option->player = &players[index];
 
+    char filename[MAXLINE];
+    sprintf(filename, "player-data/%s.txt", players[index].name);
+    read_records(option, filename);
+
     while (1) {
         error = (*next)(option);
+        save_records(option, filename);
+        option->player->money += 100;
+        option->player->skills[0]->atk+=1;
         if (error) {
-            save_records(); // TODO: save player records
+            save_records(option, filename); // TODO: save player records
             thread_ids[index] = 0;
             num_players--;
             Close(connfd);

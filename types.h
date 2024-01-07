@@ -13,6 +13,7 @@ struct ThreadArg {
 
 struct Item {
     char name[20];
+    char tag[20];
     int price;
 };
 
@@ -23,6 +24,7 @@ struct Slot {
 
 struct Skill {
     char name[20];
+    char tag[20];
     int atk;
     int cd; // Cooldown
 };
