@@ -28,3 +28,8 @@ extern const void clear();
 
 // Timing functions
 extern const void msleep(int period);
+
+
+// Recording functions
+extern const void save_records();
+extern const void load_records();
