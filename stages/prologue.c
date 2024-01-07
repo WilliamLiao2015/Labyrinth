@@ -5,6 +5,7 @@
 
 
 int PrologueScene(struct StageOption *option) {
+    sprintf(option->stage, __func__);
     char recvline[MAXLINE], *message = (
         "<clear>\n"
         "再次睜開雙眼，你發現自己身在一處陌生的地牢中\n"

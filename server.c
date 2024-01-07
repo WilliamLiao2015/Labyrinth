@@ -66,18 +66,18 @@ void *accept_connection(void *arg) {
         .cd = 2,
     };
 
-    StageFunction *next = &PrologueScene;
     struct StageOption *option = (struct StageOption *)malloc(sizeof(struct StageOption));
 
     option->connfd = connfd;
     option->player = &players[index];
+    option->next = &PrologueScene;
 
     char filename[MAXLINE];
     sprintf(filename, "player-data/%s.txt", players[index].name);
     read_records(option, filename);
 
     while (1) {
-        error = (*next)(option);
+        error = (*option->next)(option);
         save_records(option, filename);
         option->player->money += 100;
         option->player->skills[0]->atk+=1;
@@ -88,7 +88,6 @@ void *accept_connection(void *arg) {
             Close(connfd);
             pthread_exit(NULL);
         }
-        next = option->next;
     }
 
     free(option);

@@ -5,6 +5,7 @@
 
 
 int FaustKillScene(struct StageOption *option) {
+    sprintf(option->stage, __func__);
     char *message = (
         "<clear>\n"
         "見你保持沉默，浮士德扶額，一臉無奈，「那還真是遺憾，那我就只能送你上路了。」\n"

@@ -46,6 +46,7 @@ void save_records(struct StageOption *option, char* filename) {
             error = fprintf(fp, "%d\n", option->player->skills[i]->cd);
         }
     }
+    error = fprintf(fp, "%s\n", option->stage);
     if (error < 0) printf("Error writing to file!\n");
     fclose(fp);
 }
@@ -96,6 +97,22 @@ void read_records(struct StageOption *option, char* filename) {
             strcpy(option->player->skills[i]->name, "火球術");
         }
         //printf("name = %s\n", option->player->skills[i]->name);
+    }
+    error = fscanf(fp, "%s", option->stage);
+    if (strcmp(option->stage, "PrologueScene") == 0) {
+        option->next = &PrologueScene;
+    } else if (strcmp(option->stage, "BreakChainScene") == 0) {
+        option->next = &BreakChainScene;
+    } else if (strcmp(option->stage, "StayInPlaceScene") == 0) {
+        option->next = &StayInPlaceScene;
+    } else if (strcmp(option->stage, "FaustIntroductionScene") == 0) {
+        option->next = &FaustIntroductionScene;
+    } else if (strcmp(option->stage, "FaustRejectScene") == 0) {
+        option->next = &FaustRejectScene;
+    } else if (strcmp(option->stage, "FaustKillScene") == 0) {
+        option->next = &FaustKillScene;
+    } else if (strcmp(option->stage, "EpilogueScene") == 0) {
+        option->next = &EpilogueScene;
     }
     if (error < 0) printf("Error reading from file!\n");
     fclose(fp);

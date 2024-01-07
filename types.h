@@ -62,6 +62,7 @@ struct BattleInfo {
 
 struct StageOption {
     int connfd;
+    char stage[50];
     StageFunction *next;
     StageFunction *redirect_to;
     struct Player *player;

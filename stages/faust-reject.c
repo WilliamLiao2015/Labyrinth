@@ -5,6 +5,7 @@
 
 
 int FaustRejectScene(struct StageOption *option) {
+    sprintf(option->stage, __func__);
     char recvline[MAXLINE], *message = (
         "<clear>\n"
         "男子搖搖頭，「不、不，那可不行。」\n"

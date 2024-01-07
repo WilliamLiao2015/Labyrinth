@@ -5,6 +5,7 @@
 
 
 int StayInPlaceScene(struct StageOption *option) {
+    sprintf(option->stage, __func__);
     char recvline[MAXLINE], *message = (
         "<clear>\n"
         "你決定留在原地，等待契機\n"

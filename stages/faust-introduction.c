@@ -5,6 +5,7 @@
 
 
 int FaustIntroductionScene(struct StageOption *option) {
+    sprintf(option->stage, __func__);
     char recvline[MAXLINE], *message = (
         "<clear>\n"
         "「鄙人浮士德，現在是這座地下大迷宮的總管。」\n"

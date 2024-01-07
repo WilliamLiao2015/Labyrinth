@@ -5,6 +5,7 @@
 
 
 int BreakChainScene(struct StageOption *option) {
+    sprintf(option->stage, __func__);
     char recvline[MAXLINE], *message = (
         "<clear>\n"
         "你決定嘗試掙脫，但是鐵鍊太過堅固，一時之間無法掙脫\n"
