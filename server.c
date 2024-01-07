@@ -3,15 +3,12 @@
 #include "types.h"
 #include "utils.h"
 #include "stages.h"
-
-#define MAX_PLAYER 2
+#include "globals.h"
 
 
 // Global variables
 int num_players = 0;
 pthread_t thread_ids[MAX_PLAYER] = {0};
-
-struct Player players[MAX_PLAYER];
 
 
 // Reject connection
