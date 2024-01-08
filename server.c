@@ -82,7 +82,7 @@ void *accept_connection(void *arg) {
         option->player->money += 100;
         option->player->skills[0]->atk+=1;
         if (error) {
-            save_records(option, filename); // TODO: save player records
+            save_records(option, filename);
             thread_ids[index] = 0;
             num_players--;
             Close(connfd);

@@ -1,6 +1,7 @@
 *
 
 !stages
+!events
 !utils
 
 !Makefile
