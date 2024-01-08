@@ -5,7 +5,7 @@
 #include "../stages.h"
 
 
-void save_records(struct StageOption *option, char* filename) {
+void save_records(struct GameOption *option, char* filename) {
     int error;
     FILE *fp = fopen(filename, "w");
     if (fp == NULL) {
@@ -51,7 +51,7 @@ void save_records(struct StageOption *option, char* filename) {
     fclose(fp);
 }
 
-void read_records(struct StageOption *option, char* filename) {
+void read_records(struct GameOption *option, char* filename) {
     int error;
     FILE *fp = fopen(filename, "r");
     if (fp == NULL) {

@@ -5,7 +5,7 @@
 #include "../globals.h"
 
 
-int BattleScene(struct StageOption *option) {
+int BattleScene(struct GameOption *option) {
     int num_skills = 0;
     char recvline[MAXLINE], message[MAXLINE], battle_log[MAXLINE];
     struct Monster *monster = option->battle_info->monster;

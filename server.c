@@ -66,7 +66,7 @@ void *accept_connection(void *arg) {
         .cd = 2,
     };
 
-    struct StageOption *option = (struct StageOption *)malloc(sizeof(struct StageOption));
+    struct GameOption *option = (struct GameOption *)malloc(sizeof(struct GameOption));
 
     option->connfd = connfd;
     option->player = &players[index];

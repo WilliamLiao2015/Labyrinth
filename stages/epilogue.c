@@ -4,7 +4,7 @@
 #include "../stages.h"
 
 
-int EpilogueScene(struct StageOption *option) {
+int EpilogueScene(struct GameOption *option) {
     sprintf(option->stage, __func__);
     char *message = (
         "<clear>\n"

@@ -4,7 +4,7 @@
 #include "../stages.h"
 
 
-int FaustRejectScene(struct StageOption *option) {
+int FaustRejectScene(struct GameOption *option) {
     sprintf(option->stage, __func__);
     char recvline[MAXLINE], *message = (
         "<clear>\n"

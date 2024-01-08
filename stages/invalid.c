@@ -3,7 +3,7 @@
 #include "../stages.h"
 
 
-int InvalidScene(struct StageOption *option) {
+int InvalidScene(struct GameOption *option) {
     char *message = (
         "<clear>\n"
         "選擇無效，請重新選擇！\n"

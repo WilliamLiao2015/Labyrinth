@@ -4,7 +4,7 @@
 #include "../stages.h"
 
 
-int FaustKillScene(struct StageOption *option) {
+int FaustKillScene(struct GameOption *option) {
     sprintf(option->stage, __func__);
     char *message = (
         "<clear>\n"

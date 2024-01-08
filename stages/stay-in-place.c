@@ -4,7 +4,7 @@
 #include "../stages.h"
 
 
-int StayInPlaceScene(struct StageOption *option) {
+int StayInPlaceScene(struct GameOption *option) {
     sprintf(option->stage, __func__);
     char recvline[MAXLINE], *message = (
         "<clear>\n"

@@ -1,6 +1,5 @@
 #ifndef GLOBALS_H
 #define GLOBALS_H
-#endif
 
 #include <pthread.h>
 
@@ -11,3 +10,4 @@ extern int num_players;
 
 extern struct Player players[MAX_PLAYER];
 extern pthread_t thread_ids[MAX_PLAYER];
+#endif

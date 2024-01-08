@@ -1,7 +1,5 @@
 #ifndef TYPES_H
 #define TYPES_H
-#endif
-
 #define DEBUG 1
 
 
@@ -42,9 +40,9 @@ struct Player {
 };
 
 
-struct StageOption;
+struct GameOption;
 
-typedef int StageFunction(struct StageOption *option);
+typedef int GameStage(struct GameOption *option);
 
 struct Monster {
     char name[20];
@@ -58,14 +56,15 @@ struct Monster {
 
 struct BattleInfo {
     struct Monster *monster;
-    StageFunction *next;
+    GameStage *next;
 };
 
-struct StageOption {
+struct GameOption {
     int connfd;
     char stage[50];
-    StageFunction *next;
-    StageFunction *redirect_to;
+    GameStage *next;
+    GameStage *redirect_to;
     struct Player *player;
     struct BattleInfo *battle_info;
 };
+#endif

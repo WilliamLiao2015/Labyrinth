@@ -4,7 +4,7 @@
 #include "../stages.h"
 
 
-int VictoryScene(struct StageOption *option) {
+int VictoryScene(struct GameOption *option) {
     char message[MAXLINE];
 
     option->player->exp += option->battle_info->monster->exp;

@@ -1,6 +1,5 @@
 #ifndef UTILS_H
 #define UTILS_H
-#endif
 
 
 // Color declarations
@@ -31,5 +30,6 @@ extern const void msleep(int period);
 
 
 // Recording functions
-extern const void save_records(struct StageOption *option, char* filename);
-extern const void read_records(struct StageOption *option, char* filename);
+extern const void save_records(struct GameOption *option, char* filename);
+extern const void read_records(struct GameOption *option, char* filename);
+#endif

@@ -4,7 +4,7 @@
 #include "../stages.h"
 
 
-int DefeatedScene(struct StageOption *option) {
+int DefeatedScene(struct GameOption *option) {
     char message[MAXLINE];
 
     sprintf(
