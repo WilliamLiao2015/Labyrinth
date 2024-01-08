@@ -79,8 +79,6 @@ void *accept_connection(void *arg) {
     while (1) {
         error = (*option->next)(option);
         save_records(option, filename);
-        option->player->money += 100;
-        option->player->skills[0]->atk+=1;
         if (error) {
             save_records(option, filename);
             thread_ids[index] = 0;

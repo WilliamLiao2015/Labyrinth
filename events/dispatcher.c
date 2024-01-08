@@ -14,7 +14,7 @@ struct EventType event_types[] = {
     {
         .name = "靜謐",
         .description = "遠方一片寂靜，好像路的另一頭什麼也沒有",
-        .instances = {&GetTreasureEvent}
+        .instances = {&GetExperienceBottleEvent, &GetTreasureEvent}
     },
     {
         .name = "凶險",
