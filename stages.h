@@ -18,4 +18,5 @@ extern const int VictoryScene(struct GameOption *option);
 extern const int DefeatedScene(struct GameOption *option);
 
 extern const int EpilogueScene(struct GameOption *option);
+
 #endif

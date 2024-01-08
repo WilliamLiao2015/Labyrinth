@@ -67,4 +67,5 @@ struct GameOption {
     struct Player *player;
     struct BattleInfo *battle_info;
 };
+
 #endif
