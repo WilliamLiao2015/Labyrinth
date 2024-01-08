@@ -11,14 +11,16 @@ struct EventType event_types[] = {
         .description = "陰風拂面而來，令你感到一股刺骨的寒意",
         .instances = {&EncounterGhostEvent}
     },
-    // {
-    //     .name = "靜謐",
-    //     .description = "遠方一片寂靜，好像路的另一頭什麼也沒有",
-    // },
-    // {
-    //     .name = "凶險",
-    //     .description = "你感覺到一股危險的氣息，好像有什麼東西在等著你",
-    // }
+    {
+        .name = "靜謐",
+        .description = "遠方一片寂靜，好像路的另一頭什麼也沒有",
+        .instances = {&GetTreasureEvent}
+    },
+    {
+        .name = "凶險",
+        .description = "你感覺到一股危險的氣息，好像有什麼東西在等著你",
+        .instances = {&EncounterBeastEvent}
+    }
 };
 
 
