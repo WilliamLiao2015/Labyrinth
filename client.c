@@ -49,7 +49,7 @@ void game_loop(int sockfd) {
             Writen(sockfd, choice_string, strlen(choice_string));
         }
         if (is_paused) {
-            type("按下任意鍵以繼續……\n");
+            type("按下 Enter 鍵以繼續……\n");
             getchar();
         }
     }

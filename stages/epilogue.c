@@ -15,9 +15,5 @@ int EpilogueScene(struct GameOption *option) {
 
     Writen(option->connfd, message, strlen(message));
 
-    //int error = get_message(option->connfd, recvline);
-    //if (error) return 1;
-    //if (DEBUG) printf("Player's choice: %s\n", recvline);
-
     return 1;
 }
