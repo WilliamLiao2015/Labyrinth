@@ -9,7 +9,7 @@ struct EventType event_types[] = {
     {
         .name = "陰森",
         .description = "陰風拂面而來，令你感到一股刺骨的寒意",
-        .instances = {&EncounterGhostEvent}
+        .instances = {&EncounterGhostEvent, &EncounterMarketEvent}
     },
     {
         .name = "靜謐",
