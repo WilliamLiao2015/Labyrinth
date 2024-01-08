@@ -2,6 +2,7 @@
 #include "../types.h"
 #include "../utils.h"
 #include "../stages.h"
+#include "../events.h"
 
 
 int FaustPraiseScene(struct GameOption *option) {
@@ -25,7 +26,7 @@ int FaustPraiseScene(struct GameOption *option) {
 
     switch (choice) {
         case 1:
-            option->next = &FaustPraiseScene;
+            option->next = &EventDispatcher;
             break;
         default:
             option->next = &InvalidScene;

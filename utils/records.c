@@ -3,6 +3,7 @@
 #include "../types.h"
 #include "../utils.h"
 #include "../stages.h"
+#include "../events.h"
 
 
 void save_records(struct GameOption *option, char* filename) {
@@ -113,6 +114,8 @@ void read_records(struct GameOption *option, char* filename) {
         option->next = &FaustKillScene;
     } else if (strcmp(option->stage, "FaustPraiseScene") == 0) {
         option->next = &FaustPraiseScene;
+    } else if (strcmp(option->stage, "EventDispatcher") == 0) {
+        option->next = &EventDispatcher;
     } else if (strcmp(option->stage, "EpilogueScene") == 0) {
         option->next = &EpilogueScene;
     }

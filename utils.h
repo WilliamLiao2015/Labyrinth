@@ -29,6 +29,10 @@ extern const void clear();
 extern const void msleep(int period);
 
 
+// Random functions
+extern const int randint(int min, int max);
+
+
 // Recording functions
 extern const void save_records(struct GameOption *option, char* filename);
 extern const void read_records(struct GameOption *option, char* filename);
