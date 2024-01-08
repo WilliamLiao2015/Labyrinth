@@ -69,7 +69,6 @@ int EventDispatcher(struct GameOption *option) {
         return 0;
     }
     for (int i = 0; i < num_branches; i++) {
-        printf("choice: %d, i: %d\n", choice, i);
         if (choice == i + 1) {
             option->next = events[i];
             break;
