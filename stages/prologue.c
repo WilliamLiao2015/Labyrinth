@@ -25,11 +25,10 @@ int PrologueScene(struct GameOption *option) {
 
     int choice = atoi(recvline);
 
-    if (strcmp(recvline, "q") == 0)
-    {
-        option->next = &EpilogueScene;
-        return 0;
-    }
+    // if (strcmp(recvline, "q") == 0) {
+    //     option->next = &EpilogueScene;
+    //     return 0;
+    // }
     
 
     switch (choice) {
