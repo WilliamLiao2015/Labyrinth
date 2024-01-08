@@ -53,7 +53,7 @@ int BattleScene(struct GameOption *option) {
         option->next = &VictoryScene;
         return 0;
     }
-    msleep(1000);
+    msleep(500);
 
     sprintf(battle_log, "<clear>\n%s攻擊了你！\n", monster->name);
     Writen(option->connfd, battle_log, strlen(battle_log));
@@ -62,7 +62,7 @@ int BattleScene(struct GameOption *option) {
         option->next = &DefeatedScene;
         return 0;
     }
-    msleep(1000);
+    msleep(500);
 
     option->next = &BattleScene;
 
