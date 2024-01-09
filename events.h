@@ -3,7 +3,7 @@
 
 
 extern const int EventDispatcher(struct GameOption *option);
-
+extern const int EncounterPlayerEvent(struct GameOption *option);
 
 extern const int EncounterGhostEvent(struct GameOption *option);
 extern const int GetTreasureEvent(struct GameOption *option);

@@ -66,6 +66,7 @@ struct GameOption {
     GameStage *redirect_to;
     struct Player *player;
     struct BattleInfo *battle_info;
+    struct Player *otherPlayer;
 };
 
 #endif

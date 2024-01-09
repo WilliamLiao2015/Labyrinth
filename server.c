@@ -4,6 +4,7 @@
 #include "utils.h"
 #include "stages.h"
 #include "globals.h"
+#include "events.h"
 
 
 // Global variables initialization
@@ -71,12 +72,21 @@ void *accept_connection(void *arg) {
     option->connfd = connfd;
     option->player = &players[index];
     option->next = &PrologueScene;
+    option->next = &EventDispatcher;
 
     char filename[MAXLINE];
     sprintf(filename, "player-data/%s.txt", players[index].name);
     read_records(option, filename);
 
     while (1) {
+        if(index == 0)
+        {
+            option->otherPlayer = &players[1];
+        }
+        else
+        {
+            option->otherPlayer = &players[0];
+        }
         error = (*option->next)(option);
         save_records(option, filename);
         if (error) {

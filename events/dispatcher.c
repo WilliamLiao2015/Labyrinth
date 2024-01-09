@@ -57,6 +57,7 @@ int EventDispatcher(struct GameOption *option) {
         );
         strcat(message, option_string);
     }
+    strcat(message, "6. 似乎有其他玩家蹤影的路？\n");
     Writen(option->connfd, message, strlen(message));
 
     int error = get_message(option->connfd, recvline);
@@ -64,6 +65,11 @@ int EventDispatcher(struct GameOption *option) {
     if (DEBUG) printf("Player's choice: %s\n", recvline);
 
     int choice = atoi(recvline);
+
+    if(choice == 6) {
+        option->next = &EncounterPlayerEvent;
+        return 0;
+    }
 
     if (choice < 1 || choice > num_branches) {
         option->next = &InvalidScene;
