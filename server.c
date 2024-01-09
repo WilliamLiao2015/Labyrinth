@@ -11,7 +11,7 @@
 int num_players = 0;
 struct Player players[MAX_PLAYER] = {0};
 pthread_t thread_ids[MAX_PLAYER] = {0};
-
+int shared_resources = 0;
 
 // Reject connection
 void *reject_connection(void *arg) {
@@ -73,12 +73,20 @@ void *accept_connection(void *arg) {
     option->player = &players[index];
     option->next = &PrologueScene;
     option->next = &EventDispatcher;
+    option->self_resources = 0;
+    option->server_shared_resources = shared_resources;
 
     char filename[MAXLINE];
     sprintf(filename, "player-data/%s.txt", players[index].name);
     read_records(option, filename);
 
     while (1) {
+        if(option->server_shared_resources<0)
+            shared_resources = 0;
+        else 
+            shared_resources += option->self_resources;
+        option->self_resources = 0;
+        option->server_shared_resources = shared_resources;
         if(index == 0)
         {
             option->otherPlayer = &players[1];
@@ -108,7 +116,6 @@ void *accept_connection(void *arg) {
 int main(int argc, char **argv) {
     int listenfd;
     struct sockaddr_in servaddr;
-
 	if (argc != 2) err_quit("usage: server <IPaddress>");
 
     listenfd = Socket(AF_INET, SOCK_STREAM, 0);

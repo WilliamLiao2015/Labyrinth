@@ -67,6 +67,8 @@ struct GameOption {
     struct Player *player;
     struct BattleInfo *battle_info;
     struct Player *otherPlayer;
+    int self_resources;
+    int server_shared_resources;
 };
 
 #endif

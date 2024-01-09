@@ -32,6 +32,15 @@ int display(char *message, int *is_paused) {
     return is_options;
 }
 
+//int text(char *message)
+//{
+//    char *line = strtok(message, "\n");
+//    int is_text = 0;
+//    while (line != NULL) {
+//        if (strcmp(line, "<text>") == 0) is_text = 1;
+//        line = strtok(NULL, "\n");
+//    }
+//};
 
 void game_loop(int sockfd) {
     while (1) {
