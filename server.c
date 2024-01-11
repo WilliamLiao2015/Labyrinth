@@ -72,7 +72,7 @@ void *accept_connection(void *arg) {
     option->connfd = connfd;
     option->player = &players[index];
     option->next = &PrologueScene;
-    option->next = &EventDispatcher;
+    //option->next = &EventDispatcher;
     option->self_resources = 0;
     option->server_shared_resources = shared_resources;
 

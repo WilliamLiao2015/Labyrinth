@@ -40,6 +40,7 @@ int EncounterPlayerEvent(struct GameOption *option) {
         sprintf(message2, ("<clear>\n"
              "你留下了 100 個金幣\n"));
         Writen(option->connfd, message2, strlen(message2));
+        msleep(1500);
         option->player->money -= 100;
         option->self_resources += 100;
         option->next = &EncounterPlayerEvent;
@@ -50,6 +51,7 @@ int EncounterPlayerEvent(struct GameOption *option) {
         sprintf(message2, ("<clear>\n"
              "你取走了 %d 個金幣\n"), option->server_shared_resources);
         Writen(option->connfd, message2, strlen(message2));
+        msleep(1500);
         option->player->money += option->server_shared_resources;
         option->server_shared_resources = -1;
         option->next = &EncounterPlayerEvent;
